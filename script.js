@@ -5,6 +5,9 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs
 const selectedImages = [];
 var pdfDoc;
 
+/*Download Button */
+const downloadButton = document.getElementById('download-pdf');
+
 /*<------------ Drop Zone Area ---------> */
 var dropZone = document.getElementById('drop-zone');
 
@@ -30,13 +33,12 @@ dropZone.addEventListener('change', UploadPdf);
 /* Upload Part */
 function UploadPdf(e) {
 	e.preventDefault();
-	
+
 	/* CSS */
 	dropZone.classList.remove('dragover');
 	dropZone.style.display = 'none'
 	// show the loading icon
 	document.getElementById("loadingIcon").style.display = "block";
-
 	// wait for 3 seconds and hide the loading icon
 	setTimeout(function () {
 		document.getElementById("loadingIcon").style.display = "none";
@@ -58,7 +60,6 @@ function UploadPdf(e) {
 
 	//Display File Name
 	document.getElementById('file-name').innerText = pdfDoc[0].name
-
 
 	DisplayPdf();
 }
@@ -128,12 +129,20 @@ function toggleSelection(img) {
 		selectedImages.push(img);
 	}
 
-	console.log(selectedImages)
+	if(selectedImages.length == 0){
+		document.getElementById('select-head').innerText = "";
+		downloadButton.style.display = 'none'
+	}
+	else{
+		document.getElementById('select-head').innerText = "Selected Pages"
+		downloadButton.style.display = 'block'
+
+	}
+	renderSelectedImages()
 }
 
 
-/*Download Button */
-const downloadButton = document.getElementById('download-pdf');
+//Download Function
 downloadButton.addEventListener('click', downloadPDF);
 function downloadPDF() {
 	const fileName = pdfDoc[0].name.split('.').slice(0, -1).join('.');
@@ -145,3 +154,18 @@ function downloadPDF() {
 	});
 	doc.save(`${fileName}`);
 }
+
+//Showing Selected Pages
+function renderSelectedImages() {
+	const imageContainer = document.getElementById('selected-image-container');
+	imageContainer.innerHTML = '';
+	selectedImages.forEach(function (image) {
+		const newImage = document.createElement('img');
+		newImage.src = image.src;
+		newImage.alt = image.alt;
+		newImage.className = 'selected-image';
+		imageContainer.appendChild(newImage);
+	});
+}
+
+

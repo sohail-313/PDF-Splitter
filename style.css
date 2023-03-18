@@ -7,6 +7,7 @@ body {
   font-family: Arial, sans-serif;
   max-height: 100vh;
   max-width: 100vw;
+  text-align: center;
 }
 .header{
   padding: 1rem;
@@ -21,6 +22,7 @@ body {
   border-radius: 4px;
   color: white;
   padding: 4px;
+  display: none;
 }
 #drop-zone {
   border: 2px dashed #ccc;
@@ -76,7 +78,9 @@ body {
 /* Martin luther king*/
 .pdf-container{
   margin: 2rem;
-  
+  position: sticky;
+  top:0;
+  background-color: white; 
 }
 #pdf-images {
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
@@ -106,27 +110,16 @@ body {
 #pdf-images img.selected {
   border: 2px solid #0069d9;
 }
-
-.preview {
-  width: 70%;
-  height: 80%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+#selected-image-container {
+  max-width: 80%;
+  margin: 0 auto; 
 }
 
-
-.preview img {
-  max-width: 100%;
-  max-height: 100%;
+#selected-image-container img {
+  max-width: 100%; 
+  display: block; 
+  margin: 0 auto; 
 }
-.preview img {
-  object-fit: cover;
-}
-
-
-
-
 
 #loadingIcon {
   display: none;
