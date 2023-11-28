@@ -14,3 +14,10 @@ PDF Splitter is a web application that allows users to upload PDF files, view sm
 - **HTML:** Structure of the web pages.
 - **CSS:** Styling and layout of the application.
 - **JavaScript:** Interactivity and logic for handling PDF manipulation.
+
+## Getting Started
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/sohail-313/pdf-splitter.git
